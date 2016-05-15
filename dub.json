@@ -1,0 +1,16 @@
+{
+	"authors": [
+		"wilzbach"
+	],
+	"name": "contribs",
+	"license": "BSL",
+	"copyright": "Copyright © 2016, xsebi",
+	"description": "List contributors of a file",
+	"dependencies": {
+		"vibe-d": "~>0.7.26",
+		"requests": "~>0.1.2"
+	},
+	"versions": [
+		"VibeDefaultMain"
+	]
+}
