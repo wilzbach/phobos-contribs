@@ -53,9 +53,12 @@ private ContributorWithAvatar[] refreshEntry(string url)
         }
     }
 
+    import std.uni: icmp;
     auto users = commits.map!`a.author`
         .map!((x) => ContributorWithAvatar(x.login, x.id, x.avatar_url, x.html_url))
-        .array.sort!`a.login < b.login`().uniq.array;
+        .filter!`a.login.length >= 2`
+        .array.sort!((a, b) => icmp(a.login, b.login) < 0)()
+        .uniq.array;
     ContributorTime ct;
     ct.contributors = users;
     ct.lastUpdated = Clock.currTime();
