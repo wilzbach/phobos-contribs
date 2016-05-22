@@ -37,8 +37,13 @@ class Contributors : ContributorsAPI
 override:
 	ContributorWithAvatar[] getFile(string _org, string _repo, string filename)
     {
-        auto a = getContributors(_org ~ "/" ~ _repo, filename);
-        return a;
+        // TODO: yield a better error message
+        if (_org != "dlang")
+        {
+            ContributorWithAvatar[] a;
+            return a;
+        }
+        return getContributors(_org ~ "/" ~ _repo, filename);
     }
 }
 
