@@ -9,7 +9,7 @@ struct GithubCommit
     string url;
     string html_url;
     string comments_url;
-    GithubUser author;
+    @optional GithubUser author;
     // committer is optional
     @optional GithubUser committer;
     struct GithubCommitParents
