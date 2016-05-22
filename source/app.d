@@ -15,12 +15,13 @@ shared static this()
 	settings.bindAddresses = ["::1", "127.0.0.1"];
 
     auto router = new URLRouter;
+    router.get("/", &indexPage);
     registerRestInterface(router, new Contributors());
 
-    auto routes = router.getAllRoutes();
+    //auto routes = router.getAllRoutes();
 
 	listenHTTP(settings, router);
-	logInfo("Please open http://127.0.0.1:8080/ in your browser.");
+	logInfo("Please open http://127.0.0.1:"~ to!string(settings.port)~"/ in your browser.");
 }
 
 @path("/contributors")
@@ -39,4 +40,10 @@ override:
         auto a = getContributors(_org ~ "/" ~ _repo, filename);
         return a;
     }
+}
+
+void indexPage(HTTPServerRequest req,
+	HTTPServerResponse res)
+{
+	res.writeBody("Please refer to https://github.com/wilzbach/phobos-contribs for documentation");
 }
